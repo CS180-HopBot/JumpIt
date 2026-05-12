@@ -1,2 +1,0 @@
-# JumpIt
-Standard rhythm game.
