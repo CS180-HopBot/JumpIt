@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://btt2uqj3j6jqh"]
+
+[ext_resource type="Texture2D" uid="uid://b5owpeginij1c" path="res://assets 2/images/Tilemap/Terrain (16x16).png" id="1_ms375"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tdcd"]
+size = Vector2(48, 16)
+
+[sub_resource type="Animation" id="Animation_mb26n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_afg43"]
+resource_name = "move"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(80, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgg5x"]
+_data = {
+&"RESET": SubResource("Animation_mb26n"),
+&"move": SubResource("Animation_afg43")
+}
+
+[node name="MovingPlatform" type="Node2D" unique_id=546556799]
+scale = Vector2(3, 3)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=936434385]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=924720751]
+texture_filter = 1
+texture = ExtResource("1_ms375")
+region_enabled = true
+region_rect = Rect2(96, 128, 48, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=2052893985]
+shape = SubResource("RectangleShape2D_1tdcd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D" unique_id=1754688952]
+libraries/ = SubResource("AnimationLibrary_pgg5x")
+autoplay = &"move"
