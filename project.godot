@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="platform project"
+config/name="final platform project"
 run/main_scene="uid://c7an3pp33fqx7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
