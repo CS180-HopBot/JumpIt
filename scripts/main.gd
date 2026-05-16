@@ -7,7 +7,7 @@ const TITLE_SCENE := "res://scenes/title_screen.tscn"
 
 var score: int = 0
 ## Monotonic clock for rhythm (whole-second beats).
-var rhythm_time: float = 0.0
+var rhythm_time: float = 1.0
 var _level_index: int = 0
 var _apples_total: int = 0
 var _apples_collected: int = 0
@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 
 func is_within_beat_window(tolerance_sec: float) -> bool:
 	var phase := fmod(rhythm_time, 1.0) + 0.5
-	return minf(phase, 1.0 - phase) <= tolerance_sec
+	return minf(phase, abs(1.0 - phase)) <= tolerance_sec
 
 
 func toggle_pause_menu() -> void:

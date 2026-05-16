@@ -8,7 +8,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -850.0
-const BEAT_TOLERANCE_SEC := 0.2
+const BEAT_TOLERANCE_SEC := 0.1
 const STOMP_ACTIVE_SEC := 0.12
 var alive := true
 var _can_air_jump := true
@@ -71,15 +71,15 @@ func _try_rhythm_stomp() -> void:
 	var scene := get_tree().current_scene
 	if scene == null or not scene.has_method("is_within_beat_window"):
 		return
+	_can_air_jump = false
 	if scene.is_within_beat_window(BEAT_TOLERANCE_SEC):
 		_show_big_jump()
 		_activate_stomp_hitbox()
 		velocity.y = JUMP_VELOCITY
 		jump_sound.play()
-		jump_sound.play()
-		_can_air_jump = false
 	else:
 		_show_small_jump()
+		velocity.y = JUMP_VELOCITY / 3
 
 
 func _activate_stomp_hitbox() -> void:
