@@ -82,10 +82,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mel16"]
-size = Vector2(100, 38)
+size = Vector2(90, 36)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ic2c"]
-radius = 31.0
+radius = 29.0
 
 [node name="snail" type="Area2D" unique_id=1356331774]
 script = ExtResource("1_5df2x")
@@ -100,11 +100,16 @@ frame = 1
 frame_progress = 0.7375142
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=292457791]
-position = Vector2(6, 14)
+position = Vector2(5, 15)
 shape = SubResource("RectangleShape2D_mel16")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1370735753]
-position = Vector2(19, 0)
+position = Vector2(19, 3)
 shape = SubResource("CircleShape2D_8ic2c")
 
+[node name="Timer" type="Timer" parent="." unique_id=186737511]
+wait_time = 2.0
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
