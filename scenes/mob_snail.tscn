@@ -107,9 +107,4 @@ shape = SubResource("RectangleShape2D_mel16")
 position = Vector2(19, 0)
 shape = SubResource("CircleShape2D_8ic2c")
 
-[node name="Timer" type="Timer" parent="." unique_id=186737511]
-wait_time = 2.0
-autostart = true
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
